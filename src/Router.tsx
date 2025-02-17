@@ -164,7 +164,7 @@ function Router() {
       >
         <Route index element={<DashBoard/>}/>
         <Route path={Path.Admin.children.dashBoard} element={<DashBoard/>}/>
-        <Route path={Path.Admin.children.questions} element={<div>Coming soon</div>}/>
+        <Route path={Path.Admin.children.test} element={<div>Coming soon</div>}/>
       </Route>
       <Route
         path={Path["Public"]}

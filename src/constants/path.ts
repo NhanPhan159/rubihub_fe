@@ -7,7 +7,7 @@ export const Path = {
         index: "/admin",
         children: {
             dashBoard: "/admin/dashboard",
-            questions: "/admin/questions"
+            test: "/admin/tests"
         }
     },
     PageNotFound: "/page-not-found",
