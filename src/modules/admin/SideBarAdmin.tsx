@@ -18,9 +18,9 @@ const routingSideBar: TRoutingSideBar[] = [
     isActive: true,
   },
   {
-    nameLink: "Test",
-    path: Path.Admin.children.test,
-    iconName: Icons.TEST,
+    nameLink: "Question",
+    path: Path.Admin.children.question,
+    iconName: Icons.QUESTION,
     isActive: true,
   },
   {

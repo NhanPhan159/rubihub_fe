@@ -18,6 +18,7 @@ import {
 import { Role } from "./enums";
 import DashBoard from "./modules/admin/DashBoard";
 import { Path } from "./constants";
+import { Question } from "./modules/question";
 
 const parseJwt = (accessToken: string) => {
   try {
@@ -44,7 +45,7 @@ const AuthenticatedRoute = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (document.cookie) {
       localStorage.setItem("accessToken", document.cookie.split("=")[1]);
-
+      console.log("local",document.cookie)
       setAccessToken(document.cookie.split("=")[1]);
     }
   }, [document.cookie]);
@@ -164,7 +165,7 @@ function Router() {
       >
         <Route index element={<DashBoard/>}/>
         <Route path={Path.Admin.children.dashBoard} element={<DashBoard/>}/>
-        <Route path={Path.Admin.children.test} element={<div>Coming soon</div>}/>
+        <Route path={Path.Admin.children.question} element={<Question/>}/>
       </Route>
       <Route
         path={Path["Public"]}

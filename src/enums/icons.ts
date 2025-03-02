@@ -1,5 +1,5 @@
 export enum Icons {
     DASHBOARD = "dashboard",
-    TEST = "test",
+    QUESTION = "question",
     APP = "app"
 }

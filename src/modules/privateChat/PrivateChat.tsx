@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Avatar, Box, IconButton, styled } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {
@@ -19,6 +19,7 @@ import { hasPermission } from "../../utils";
 import { Role } from "../../enums";
 import { color, Path } from "../../constants";
 import { useAuthStore } from "../auth/store";
+import { UpdateProfileModal } from "./UpdateProfileModal";
 
 const ActionMenuContainer = styled(Box)(() => ({
   display: "flex",
@@ -33,6 +34,7 @@ const ActionMenuContainer = styled(Box)(() => ({
 
 export const PrivateChat: FC = () => {
   const { t } = useTranslation();
+  const [isOpenSetting,setIsOpenSetting] = useState(false)
   const navigate = useNavigate();
   const {
     value: { currentConversationId, isSideBarOpen },
@@ -92,7 +94,7 @@ export const PrivateChat: FC = () => {
                       {t("settings")}
                     </ActionMenuContainer>
                   ),
-                  onClick: () => console.log("Settings"),
+                  onClick: () => setIsOpenSetting(true)
                 },
                 {
                   element: (
@@ -111,6 +113,8 @@ export const PrivateChat: FC = () => {
             >
               <Box
                 display="flex"
+                alignItems={"center"}
+                gap={1}
                 padding={1}
                 sx={{
                   "&:hover": {
@@ -121,8 +125,10 @@ export const PrivateChat: FC = () => {
                 }}
               >
                 <Avatar />
+                <span>{currentUser?.userName}</span>
               </Box>
             </ActionDropdown>
+            <UpdateProfileModal isOpen={isOpenSetting} setIsOpen={setIsOpenSetting}/>
           </Box>
         </Header>
       }

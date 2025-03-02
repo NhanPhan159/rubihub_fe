@@ -9,7 +9,7 @@ export const IconsComponent:FC<TNameIcons> = (props) => {
     switch (props.name) {
         case Icons.DASHBOARD:
           return <DashboardRoundedIcon/>
-        case Icons.TEST:
+        case Icons.QUESTION:
           return <QuizRoundedIcon/>
         case Icons.APP:
           return <AppsIcon/>
