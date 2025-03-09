@@ -12,7 +12,7 @@ import { PAGE_SIZE } from "../constants";
 export const publicChat = async ({
   message,
 }: PublicChatRequest): Promise<PublicChatResponse> => {
-  const { data } = await axiosClient.post<PublicChatResponse>("chat/public", {
+  const { data } = await axiosClient.post<PublicChatResponse>("chats/public", {
     message,
   });
 
@@ -23,7 +23,7 @@ export const privateChat = async ({
   chatData,
   userId,
 }: PrivateChatRequest): Promise<PrivateChatResponse> => {
-  const { data } = await axiosClient.post<PrivateChatResponse>("chat/private", {
+  const { data } = await axiosClient.post<PrivateChatResponse>("chats/private", {
     chatData,
     userId,
   });
@@ -36,7 +36,7 @@ export const fetchChatsByConversation = async (
   conversationId?: string,
 ): Promise<PaginationResult<PrivateChat>> => {
   const { data } = await axiosClient.get<PaginationResult<PrivateChat>>(
-    "chat",
+    "chats",
     { params: { conversationId, page: page, limit: PAGE_SIZE } },
   );
 
