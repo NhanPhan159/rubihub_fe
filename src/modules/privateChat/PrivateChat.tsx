@@ -3,6 +3,7 @@ import { Avatar, Box, IconButton, styled } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {
   AdminPanelSettingsOutlined,
+  GamesOutlined,
   LogoutRounded,
   PersonOutlineRounded,
   SettingsOutlined,
@@ -20,6 +21,8 @@ import { Role } from "../../enums";
 import { color, Path } from "../../constants";
 import { useAuthStore } from "../auth/store";
 import { UpdateProfileModal } from "./UpdateProfileModal";
+import GameBoard from "../game/GameBoard";
+import TestGame from "../game/TestGame";
 
 const ActionMenuContainer = styled(Box)(() => ({
   display: "flex",
@@ -35,7 +38,10 @@ const ActionMenuContainer = styled(Box)(() => ({
 export const PrivateChat: FC = () => {
   const { t } = useTranslation();
   const [isOpenSetting,setIsOpenSetting] = useState(false)
+  const [isOpenGame,setIsOpenGame] = useState(false)
+  const {value:{isGameModal},actions:{setIsGameModal}} = useGlobalStore(state=>state)
   const navigate = useNavigate();
+
   const {
     value: { currentConversationId, isSideBarOpen },
     actions: { handleToggleDrawer },
@@ -99,6 +105,15 @@ export const PrivateChat: FC = () => {
                 {
                   element: (
                     <ActionMenuContainer>
+                      <GamesOutlined/>
+                      {t("Games")}
+                    </ActionMenuContainer>
+                  ),
+                  onClick: () => setIsOpenGame(true)
+                },
+                {
+                  element: (
+                    <ActionMenuContainer>
                       <LogoutRounded />
                       {t("logout")}
                     </ActionMenuContainer>
@@ -129,6 +144,8 @@ export const PrivateChat: FC = () => {
               </Box>
             </ActionDropdown>
             <UpdateProfileModal isOpen={isOpenSetting} setIsOpen={setIsOpenSetting}/>
+            <GameBoard isOpen={isOpenGame} setIsOpen={setIsOpenGame}/>
+            <TestGame isOpen={isGameModal} settingIsOpen={setIsGameModal}/>
           </Box>
         </Header>
       }

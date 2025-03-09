@@ -6,6 +6,7 @@ import { fetchCurrentUser, fetchConversation, updateConversationName, deleteConv
 
 type StateValue = {
   theme: Theme;
+  isGameModal: boolean;
   currentUser: UserDetails | null;
   conversations: Conversation[];
 };
@@ -17,6 +18,7 @@ type Action = {
   updateConversationName: (conversationId: string, name: string) => Promise<void>;
   deleteConversation: (conversationId: string) => Promise<void>;
   clearStore: () => void;
+  setIsGameModal: (value: boolean) => void 
 };
 
 type Store = {
@@ -28,6 +30,7 @@ const initialStateValue: StateValue = {
   theme: Theme.SYSTEM,
   currentUser: null,
   conversations: [],
+  isGameModal: false,
 };
 
 const useStore = create<Store>((set) => ({
@@ -72,6 +75,9 @@ const useStore = create<Store>((set) => ({
       }));
     },
     clearStore: () => set({ value: initialStateValue }),
+    setIsGameModal: (data: boolean) => {
+      set((state)=>({value : {...state.value,isGameModal:data}}))
+    }
   },
 }));
 
